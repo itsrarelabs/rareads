@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Agency, Ad creative that performs.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+  <link href="https://db.onlinewebfonts.com/c/5b59f04d4f1eb01a01d4e05c32c64b41?family=PP+Editorial+New" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:       #0A0A0A;
+      --bg-2:     #111111;
+      --surface:  #1A1A1A;
+      --surface-2:#222222;
+      --text:     #F5F2EC;
+      --muted:    rgba(245,242,236,0.55);
+      --dim:      rgba(245,242,236,0.35);
+      --line:     rgba(245,242,236,0.08);
+      --gold:     #C9A96E;
+      --serif:    'PP Editorial New', 'Times New Roman', serif;
+      --sans:     'Inter', system-ui, -apple-system, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--sans);
+      font-weight: 400;
+      line-height: 1.5;
+      overflow-x: hidden;
+    }
+
+    img { max-width: 100%; display: block; }
+
+    /* ──────────── ANNOUNCEMENT BAR ──────────── */
+    .announce {
+      background: var(--surface);
+      color: var(--text);
+      text-align: center;
+      padding: 10px 16px;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.01em;
+      border-bottom: 1px solid var(--line);
+    }
+    .announce a { color: var(--gold); text-decoration: none; margin-left: 8px; font-weight: 600; }
+
+    /* ──────────── NAV ──────────── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(10,10,10,0.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--line);
+      padding: 18px 48px;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .nav-links { display: flex; gap: 36px; }
+    .nav-links a {
+      color: var(--text); text-decoration: none;
+      font-size: 14px; font-weight: 500;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--gold); }
+    .logo {
+      font-family: var(--serif);
+      font-size: 24px; font-weight: 500;
+      color: var(--text); text-decoration: none;
+      letter-spacing: 0.02em;
+    }
+    .nav-cta {
+      background: var(--text); color: var(--bg);
+      padding: 11px 22px;
+      font-family: var(--sans);
+      font-size: 13px; font-weight: 600;
+      text-decoration: none;
+      border-radius: 100px;
+      transition: all 0.2s;
+    }
+    .nav-cta:hover { background: var(--gold); }
+
+    /* ──────────── HERO ──────────── */
+    .hero {
+      position: relative;
+      min-height: 90vh;
+      display: flex; flex-direction: column;
+      justify-content: center; align-items: center;
+      text-align: center;
+      padding: 80px 24px 120px;
+      overflow: hidden;
+      background: var(--bg);
+    }
+    /* atmospheric backdrop */
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse at 50% 20%, rgba(201,169,110,0.08) 0%, transparent 60%),
+        radial-gradient(ellipse at 30% 80%, rgba(201,169,110,0.04) 0%, transparent 50%);
+      pointer-events: none;
+    }
+    .hero-eyebrow {
+      font-size: 13px; font-weight: 600;
+      color: var(--gold);
+      letter-spacing: 0.18em; text-transform: uppercase;
+      margin-bottom: 28px;
+      position: relative; z-index: 2;
+      animation: up 1s cubic-bezier(0.16,1,0.3,1) both;
+    }
+    .hero h1 {
+      font-family: var(--serif);
+      font-size: clamp(48px, 8vw, 124px);
+      font-weight: 400;
+      line-height: 0.95;
+      letter-spacing: -0.025em;
+      max-width: 1100px;
+      position: relative; z-index: 2;
+      animation: up 1s 0.1s cubic-bezier(0.16,1,0.3,1) both;
+    }
+    .hero h1 em {
+      font-style: italic;
+      color: var(--gold);
+    }
+    .hero p {
+      font-size: clamp(16px, 1.4vw, 20px);
+      color: var(--muted);
+      max-width: 600px;
+      margin-top: 32px;
+      line-height: 1.55;
+      position: relative; z-index: 2;
+      animation: up 1s 0.2s cubic-bezier(0.16,1,0.3,1) both;
+    }
+    .hero-cta {
+      margin-top: 44px;
+      display: flex; gap: 16px;
+      position: relative; z-index: 2;
+      animation: up 1s 0.3s cubic-bezier(0.16,1,0.3,1) both;
+    }
+    .btn-primary {
+      background: var(--text); color: var(--bg);
+      padding: 18px 36px;
+      font-family: var(--sans);
+      font-size: 14px; font-weight: 600;
+      text-decoration: none;
+      border-radius: 100px;
+      transition: all 0.2s;
+    }
+    .btn-primary:hover { background: var(--gold); transform: translateY(-2px); }
+    .btn-secondary {
+      background: transparent;
+      color: var(--text);
+      padding: 18px 36px;
+      font-family: var(--sans);
+      font-size: 14px; font-weight: 600;
+      text-decoration: none;
+      border: 1px solid rgba(245,242,236,0.2);
+      border-radius: 100px;
+      transition: all 0.2s;
+    }
+    .btn-secondary:hover { border-color: var(--text); background: rgba(245,242,236,0.05); }
+
+    /* ──────────── FEATURE STRIP ──────────── */
+    .feature-strip {
+      background: var(--bg-2);
+      padding: 60px 48px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 48px;
+      border-bottom: 1px solid var(--line);
+      border-top: 1px solid var(--line);
+    }
+    .feature {
+      display: flex; flex-direction: column; gap: 8px;
+    }
+    .feature h3 {
+      font-family: var(--sans);
+      font-size: 16px; font-weight: 600;
+      color: var(--text);
+    }
+    .feature p {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    /* ──────────── SECTION (generic) ──────────── */
+    .section {
+      padding: 140px 48px;
+      position: relative;
+    }
+    .section-inner { max-width: 1280px; margin: 0 auto; }
+    .section-eyebrow {
+      font-size: 12px; font-weight: 600;
+      color: var(--gold);
+      letter-spacing: 0.2em; text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+    .section-h2 {
+      font-family: var(--serif);
+      font-size: clamp(36px, 5vw, 72px);
+      font-weight: 400;
+      line-height: 1.0;
+      letter-spacing: -0.02em;
+      max-width: 900px;
+      margin-bottom: 24px;
+    }
+    .section-h2 em { font-style: italic; color: var(--gold); }
+    .section-lede {
+      font-size: clamp(16px, 1.3vw, 19px);
+      color: var(--muted);
+      max-width: 640px;
+      line-height: 1.6;
+    }
+
+    /* ──────────── SHOWCASE (large image + caption) ──────────── */
+    .showcase {
+      padding: 140px 48px;
+    }
+    .showcase-inner { max-width: 1280px; margin: 0 auto; }
+    .showcase-img {
+      max-width: 700px;
+      margin: 40px auto 0;
+      overflow: hidden;
+    }
+
+    /* ──────────── SERVICE TABS ──────────── */
+    .services {
+      padding: 140px 48px;
+      background: var(--bg);
+    }
+    .services-inner { max-width: 1280px; margin: 0 auto; }
+    .tabs {
+      display: flex; gap: 0;
+      border-bottom: 1px solid var(--line);
+      margin: 60px 0 50px;
+      overflow-x: auto;
+    }
+    .tabs::-webkit-scrollbar { display: none; }
+    .tab {
+      background: none; border: none; cursor: pointer;
+      color: var(--dim);
+      font-family: var(--sans);
+      font-size: 16px; font-weight: 500;
+      padding: 16px 24px;
+      white-space: nowrap;
+      position: relative;
+      transition: color 0.25s;
+    }
+    .tab.active {
+      color: var(--text);
+    }
+    .tab.active::after {
+      content: ''; position: absolute;
+      bottom: -1px; left: 24px; right: 24px;
+      height: 2px; background: var(--gold);
+    }
+    .tab-content {
+      display: none;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .tab-content.active { display: grid; }
+    .tab-text h3 {
+      font-family: var(--serif);
+      font-size: clamp(28px, 3.5vw, 48px);
+      font-weight: 400;
+      line-height: 1.05;
+      letter-spacing: -0.015em;
+      margin-bottom: 20px;
+    }
+    .tab-text p {
+      color: var(--muted); font-size: 17px; line-height: 1.6;
+    }
+    .tab-img {
+      aspect-ratio: 5/4;
+      position: relative;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .tab-icon {
+      position: relative; z-index: 2;
+      width: 50%; max-width: 220px;
+      color: var(--gold);
+    }
+    .tab-icon svg {
+      width: 100%; height: auto;
+      display: block;
+    }
+
+    /* ──────────── STATS ──────────── */
+    .stats {
+      background: var(--bg-2);
+      padding: 140px 48px;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+    .stats-inner { max-width: 1280px; margin: 0 auto; }
+    .stats-grid {
+      margin-top: 80px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 40px;
+    }
+    .stat {
+      border-top: 1px solid var(--line);
+      padding-top: 32px;
+    }
+    .stat-label {
+      font-family: var(--sans);
+      font-size: 13px; font-weight: 600;
+      color: var(--muted);
+      letter-spacing: 0.05em;
+      margin-bottom: 16px;
+      line-height: 1.4;
+    }
+    .stat-value {
+      font-family: var(--serif);
+      font-size: clamp(48px, 5.5vw, 88px);
+      font-weight: 400;
+      line-height: 1;
+      letter-spacing: -0.02em;
+    }
+    .stat-prefix {
+      display: block;
+      font-family: var(--sans);
+      font-size: 13px; font-weight: 500;
+      color: var(--dim);
+      margin-bottom: 8px;
+    }
+
+    /* ──────────── AUTHORITY / SCIENCE ──────────── */
+    .authority {
+      padding: 140px 48px;
+    }
+    .authority-inner { max-width: 1280px; margin: 0 auto; }
+    .authority-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 32px;
+      margin-top: 80px;
+    }
+    .auth-card {
+      background: var(--surface);
+      border-radius: 20px;
+      overflow: hidden;
+      display: flex; flex-direction: column;
+    }
+    .auth-photo {
+      aspect-ratio: 4/3;
+      background: linear-gradient(135deg, #2A2A2A 0%, #1A1A1A 100%);
+      position: relative;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .auth-photo::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(circle at 50% 60%, rgba(201,169,110,0.1) 0%, transparent 50%);
+    }
+    .auth-photo-icon {
+      position: relative; z-index: 2;
+      width: 80px; height: 80px;
+      border-radius: 50%;
+      background: rgba(245,242,236,0.05);
+      border: 1px solid rgba(245,242,236,0.1);
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--serif); font-style: italic;
+      font-size: 32px; color: var(--dim);
+    }
+    .auth-body { padding: 32px; }
+    .auth-body h3 {
+      font-family: var(--serif);
+      font-size: 26px; font-weight: 400;
+      margin-bottom: 8px;
+      letter-spacing: -0.01em;
+    }
+    .auth-body p {
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.55;
+    }
+
+    /* ──────────── TESTIMONIALS ──────────── */
+    .testimonials {
+      background: var(--bg-2);
+      padding: 140px 48px;
+      border-top: 1px solid var(--line);
+    }
+    .test-inner { max-width: 1280px; margin: 0 auto; }
+    .test-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 80px;
+    }
+    .test-card {
+      background: var(--surface);
+      border-radius: 16px;
+      padding: 32px;
+      display: flex; flex-direction: column;
+      gap: 24px;
+      min-height: 280px;
+    }
+    .test-quote {
+      font-family: var(--serif);
+      font-size: 22px;
+      line-height: 1.3;
+      letter-spacing: -0.01em;
+      flex: 1;
+    }
+    .test-author {
+      display: flex; align-items: center; gap: 12px;
+      padding-top: 20px;
+      border-top: 1px solid var(--line);
+    }
+    .test-avatar {
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--gold) 0%, #8a7045 100%);
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--sans);
+      font-weight: 700;
+      font-size: 15px;
+      color: var(--bg);
+    }
+    .test-name {
+      font-family: var(--sans);
+      font-size: 14px; font-weight: 600;
+    }
+    .test-role {
+      font-family: var(--sans);
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    /* ──────────── BIG CLOSER ──────────── */
+    .closer {
+      padding: 180px 48px 120px;
+      text-align: center;
+      background: var(--bg);
+      position: relative;
+      overflow: hidden;
+    }
+    .closer::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse at 50% 40%, rgba(201,169,110,0.12) 0%, transparent 55%);
+    }
+    .closer h2 {
+      font-family: var(--serif);
+      font-size: clamp(48px, 9vw, 144px);
+      font-weight: 400;
+      line-height: 0.92;
+      letter-spacing: -0.025em;
+      position: relative; z-index: 2;
+    }
+    .closer h2 em { font-style: italic; color: var(--gold); }
+    .closer-cta { margin-top: 48px; position: relative; z-index: 2; }
+
+    /* ──────────── FOOTER ──────────── */
+    footer {
+      background: var(--bg-2);
+      padding: 80px 48px 40px;
+      border-top: 1px solid var(--line);
+    }
+    .footer-inner {
+      max-width: 1280px; margin: 0 auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 48px;
+    }
+    .footer-brand h3 {
+      font-family: var(--serif);
+      font-size: 32px;
+      font-weight: 400;
+      margin-bottom: 12px;
+    }
+    .footer-brand p {
+      color: var(--muted);
+      font-size: 14px;
+      max-width: 320px;
+      line-height: 1.55;
+    }
+    .footer-col h4 {
+      font-family: var(--sans);
+      font-size: 12px; font-weight: 600;
+      color: var(--dim);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-col a {
+      color: var(--text);
+      text-decoration: none;
+      font-size: 14px;
+      transition: color 0.2s;
+    }
+    .footer-col a:hover { color: var(--gold); }
+    .footer-bar {
+      max-width: 1280px; margin: 60px auto 0;
+      padding-top: 24px;
+      border-top: 1px solid var(--line);
+      display: flex; justify-content: space-between;
+      font-size: 12px;
+      color: var(--dim);
+    }
+
+    /* ──────────── ANIMATIONS ──────────── */
+    @keyframes up {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .reveal {
+      opacity: 0; transform: translateY(48px);
+      transition: opacity 1s cubic-bezier(0.16,1,0.3,1), transform 1s cubic-bezier(0.16,1,0.3,1);
+    }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    /* ──────────── RESPONSIVE ──────────── */
+    @media (max-width: 900px) {
+      nav { padding: 16px 24px; }
+      .nav-links { display: none; }
+
+      .hero { padding: 60px 24px 80px; min-height: 70vh; }
+      .showcase { padding: 60px 24px; }
+      .services { padding: 60px 24px; }
+      .stats { padding: 60px 24px; }
+      .authority { padding: 60px 24px; }
+      .testimonials { padding: 60px 24px; }
+      .closer { padding: 100px 24px 80px; }
+      footer { padding: 60px 24px 32px; }
+
+      .feature-strip { grid-template-columns: 1fr; padding: 40px 24px; gap: 32px; }
+      .tab-content.active { grid-template-columns: 1fr; gap: 32px; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+      .authority-grid { grid-template-columns: 1fr; }
+      .test-grid { grid-template-columns: 1fr; }
+      .footer-inner { grid-template-columns: 1fr 1fr; }
+      .footer-bar { flex-direction: column; gap: 8px; }
+    }
+  </style>
+</head>
+<body>
+
+
+<!-- ──────────── NAV ──────────── -->
+<nav>
+  <a href="#" class="logo">Agency</a>
+  <div class="nav-links">
+    <a href="#how">How it works</a>
+    <a href="#work">Work</a>
+    <a href="#results">Results</a>
+    <a href="#science">Approach</a>
+  </div>
+  <a href="#contact" class="nav-cta">Send a brief</a>
+</nav>
+
+<!-- ──────────── HERO ──────────── -->
+<section class="hero">
+  <h1>Ad creative<br>that <em>performs.</em></h1>
+  <p>For health and longevity brands that care about more than impressions. Designed around the human truth behind your category.</p>
+  <div class="hero-cta">
+    <a href="#contact" class="btn-primary">Send a brief</a>
+    <a href="#how" class="btn-secondary">See the work</a>
+  </div>
+</section>
+
+
+<!-- ──────────── SHOWCASE / HOW WE THINK ──────────── -->
+<section class="showcase" id="how">
+  <div class="showcase-inner">
+    <h2 class="section-h2">Most health advertising looks the same.<br>Yours <em>shouldn't.</em></h2>
+    <p class="section-lede">We design creative grounded in real human truth.</p>
+    <div class="showcase-img">
+      <img src="images/strategy-image.jpg" alt="Ad Strategy"/>
+    </div>
+  </div>
+</section>
+
+<!-- ──────────── SERVICES / TABS ──────────── -->
+<section class="services" id="work">
+  <div class="services-inner">
+    <h2 class="section-h2">An end-to-end creative system,<br>built around <em>outcomes.</em></h2>
+    <p class="section-lede">Six interlocking services. Each one shapes the next, so nothing breaks between brief and click.</p>
+
+    <div class="tabs" id="tabs">
+      <button class="tab active" data-tab="research">Research</button>
+      <button class="tab" data-tab="strategy">Strategy</button>
+      <button class="tab" data-tab="design">Design</button>
+      <button class="tab" data-tab="targeting">Targeting</button>
+      <button class="tab" data-tab="execution">Execution</button>
+      <button class="tab" data-tab="post">After the click</button>
+    </div>
+
+    <div class="tab-content active" data-content="research">
+      <div class="tab-text">
+        <h3>Find the truth before you find the brief.</h3>
+        <p>We start with your patient, your category, and the cultural moment, then come back with the insight no competitor is using, the one your creative will live on for the next twelve months.</p>
+      </div>
+      <div class="tab-img">
+        <div class="tab-icon">
+          <svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="80" cy="80" r="50"/>
+            <line x1="116" y1="116" x2="160" y2="160"/>
+            <path d="M65 75 Q65 60 80 60 Q95 60 95 75 Q95 85 80 92 L80 100"/>
+            <circle cx="80" cy="110" r="1.5" fill="currentColor"/>
+            <circle cx="40" cy="40" r="2" fill="currentColor" opacity="0.4"/>
+            <circle cx="170" cy="50" r="2.5" fill="currentColor" opacity="0.5"/>
+            <circle cx="155" cy="180" r="1.5" fill="currentColor" opacity="0.3"/>
+            <circle cx="30" cy="160" r="2" fill="currentColor" opacity="0.4"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-content" data-content="strategy">
+      <div class="tab-text">
+        <h3>The idea before the idea.</h3>
+        <p>A creative platform that everything else ladders up to. So every ad, every post, every landing page feels like it came from the same place, because it did.</p>
+      </div>
+      <div class="tab-img">
+        <div class="tab-icon">
+          <svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="100" cy="40" r="14"/>
+            <circle cx="40" cy="140" r="14"/>
+            <circle cx="160" cy="140" r="14"/>
+            <circle cx="100" cy="100" r="6" fill="currentColor"/>
+            <line x1="100" y1="54" x2="100" y2="94"/>
+            <line x1="95" y1="105" x2="50" y2="130"/>
+            <line x1="105" y1="105" x2="150" y2="130"/>
+            <circle cx="100" cy="40" r="4" fill="currentColor" opacity="0.6"/>
+            <circle cx="40" cy="140" r="4" fill="currentColor" opacity="0.6"/>
+            <circle cx="160" cy="140" r="4" fill="currentColor" opacity="0.6"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-content" data-content="design">
+      <div class="tab-text">
+        <h3>Stop the scroll.</h3>
+        <p>Static, video, carousel, story. Each format designed for how the platform behaves, not resized from something else. Built to look like the work people remember.</p>
+      </div>
+      <div class="tab-img">
+        <div class="tab-icon">
+          <svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M40 150 L130 60 L150 80 L60 170 Z"/>
+            <line x1="130" y1="60" x2="142" y2="48"/>
+            <line x1="150" y1="80" x2="162" y2="68"/>
+            <path d="M142 48 Q150 40 158 48 Q166 56 158 64 L162 68"/>
+            <line x1="40" y1="150" x2="50" y2="180"/>
+            <line x1="60" y1="170" x2="50" y2="180"/>
+            <circle cx="155" cy="35" r="2" fill="currentColor" opacity="0.5"/>
+            <path d="M168 30 L168 42 M162 36 L174 36" stroke-opacity="0.5"/>
+            <circle cx="30" cy="60" r="2.5" fill="currentColor" opacity="0.4"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-content" data-content="targeting">
+      <div class="tab-text">
+        <h3>The right person at the right moment.</h3>
+        <p>Who sees the work matters as much as the work itself. We build the audiences, test the segments, and find where your spend actually compounds.</p>
+      </div>
+      <div class="tab-img">
+        <div class="tab-icon">
+          <svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="100" cy="100" r="60"/>
+            <circle cx="100" cy="100" r="38"/>
+            <circle cx="100" cy="100" r="16"/>
+            <circle cx="100" cy="100" r="4" fill="currentColor"/>
+            <line x1="100" y1="20" x2="100" y2="38"/>
+            <line x1="100" y1="162" x2="100" y2="180"/>
+            <line x1="20" y1="100" x2="38" y2="100"/>
+            <line x1="162" y1="100" x2="180" y2="100"/>
+            <path d="M155 45 L100 100" stroke-opacity="0.6"/>
+            <path d="M150 50 L156 45 L156 51 Z" fill="currentColor" opacity="0.6"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-content" data-content="execution">
+      <div class="tab-text">
+        <h3>We post it. We run it. We own it.</h3>
+        <p>No handoff. No "here's the file, good luck." We launch, monitor, optimize, and report, so the work compounds instead of flatlining after day one.</p>
+      </div>
+      <div class="tab-img">
+        <div class="tab-icon">
+          <svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M100 30 Q130 30 130 80 L130 140 L100 160 L70 140 L70 80 Q70 30 100 30 Z"/>
+            <circle cx="100" cy="85" r="14"/>
+            <path d="M70 115 L50 135 L70 135 Z"/>
+            <path d="M130 115 L150 135 L130 135 Z"/>
+            <path d="M85 160 Q90 180 100 184 Q110 180 115 160"/>
+            <line x1="30" y1="100" x2="50" y2="100" stroke-opacity="0.5"/>
+            <line x1="30" y1="115" x2="46" y2="115" stroke-opacity="0.3"/>
+            <line x1="150" y1="100" x2="170" y2="100" stroke-opacity="0.5"/>
+            <line x1="154" y1="115" x2="170" y2="115" stroke-opacity="0.3"/>
+            <circle cx="40" cy="50" r="2" fill="currentColor" opacity="0.5"/>
+            <circle cx="170" cy="55" r="1.5" fill="currentColor" opacity="0.4"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-content" data-content="post">
+      <div class="tab-text">
+        <h3>Most agencies stop at the ad.</h3>
+        <p>We don't. Landing pages, conversion copy, form flows. We build what catches the people your ad worked hard to send you. The click is just the beginning.</p>
+      </div>
+      <div class="tab-img">
+        <div class="tab-icon">
+          <svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="40" y="40" width="120" height="100" rx="6"/>
+            <line x1="40" y1="62" x2="160" y2="62"/>
+            <circle cx="52" cy="51" r="2" fill="currentColor"/>
+            <circle cx="62" cy="51" r="2" fill="currentColor"/>
+            <circle cx="72" cy="51" r="2" fill="currentColor"/>
+            <line x1="55" y1="82" x2="120" y2="82" stroke-opacity="0.6"/>
+            <line x1="55" y1="96" x2="100" y2="96" stroke-opacity="0.4"/>
+            <rect x="55" y="110" width="70" height="18" rx="3"/>
+            <path d="M75 130 L75 165 L90 152 L98 175 L108 170 L100 148 L118 148 Z" fill="var(--bg)"/>
+            <path d="M75 130 L75 165 L90 152 L98 175 L108 170 L100 148 L118 148 Z"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ──────────── AUTHORITY ──────────── -->
+<section class="authority" id="science">
+  <div class="authority-inner">
+    <h2 class="section-h2">Grounded in strategy.<br>Validated by <em>performance.</em></h2>
+    <p class="section-lede">We build creative on the same principles that define great advertising: human truth, cultural relevance, and disciplined measurement.</p>
+
+    <div class="authority-grid">
+      <div class="auth-card">
+        <div class="auth-photo"><div class="auth-photo-icon">W+K</div></div>
+        <div class="auth-body">
+          <h3>The Wieden+Kennedy tradition</h3>
+          <p>We follow the school of advertising that built Nike, Old Spice, and Bud Light: lead with story, not specs. Make the brand stand for something the audience already believes.</p>
+        </div>
+      </div>
+      <div class="auth-card">
+        <div class="auth-photo"><div class="auth-photo-icon">DR</div></div>
+        <div class="auth-body">
+          <h3>Direct response discipline</h3>
+          <p>Beautiful work that doesn't sell is just art. Every creative decision is tied to a measurable outcome: click, lead, booked consult, signed patient.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ──────────── CLOSER ──────────── -->
+<section class="closer" id="contact">
+  <h2>Creative <em>changed.</em><br>Performance changed.</h2>
+  <div class="closer-cta">
+    <a href="mailto:hello@agency.com" class="btn-primary">Send us a brief</a>
+  </div>
+</section>
+
+<!-- ──────────── FOOTER ──────────── -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <h3>Agency</h3>
+      <p>An ad creative strategy and design studio for health and longevity brands.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Work</h4>
+      <ul>
+        <li><a href="#">Case studies</a></li>
+        <li><a href="#">Approach</a></li>
+        <li><a href="#">Partners</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Studio</h4>
+      <ul>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Contact</a></li>
+        <li><a href="#">Journal</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <ul>
+        <li><a href="mailto:hello@agency.com">hello@agency.com</a></li>
+        <li><a href="#">LinkedIn</a></li>
+        <li><a href="#">Instagram</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bar">
+    <span>© 2025 Agency</span>
+    <span>New York, NY</span>
+  </div>
+</footer>
+
+<script>
+  // Reveal on scroll
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+  // Tabs
+  const tabs = document.querySelectorAll('.tab');
+  const contents = document.querySelectorAll('.tab-content');
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      const target = tab.dataset.tab;
+      tabs.forEach(t => t.classList.remove('active'));
+      contents.forEach(c => c.classList.remove('active'));
+      tab.classList.add('active');
+      document.querySelector(`[data-content="${target}"]`).classList.add('active');
+    });
+  });
+</script>
+
+</body>
+</html>
